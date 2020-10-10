@@ -26,10 +26,14 @@ const reducer = (state = initialState, action) => {
                 counter: state.counter - action.value
             }
             case("STORE"):
-            const newResult = [...state.results];
             return {
                 ...state,
-                results : newResult.push(state.counter)
+                results : state.results.concat(state.counter)
+            }
+            case("DELETE"):
+            return {
+                ...state,
+                results: state.results.filter((item) => item !== state.results[action.value])
             }
     }
 
